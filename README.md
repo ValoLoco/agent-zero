@@ -8,7 +8,6 @@
 
 [![Agent Zero Website](https://img.shields.io/badge/Website-agent--zero.ai-0A192F?style=for-the-badge&logo=vercel&logoColor=white)](https://agent-zero.ai) [![Thanks to Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-Thanks%20to%20Sponsors-FF69B4?style=for-the-badge&logo=githubsponsors&logoColor=white)](https://github.com/sponsors/agent0ai) [![Follow on X](https://img.shields.io/badge/X-Follow-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/Agent0ai) [![Join our Discord](https://img.shields.io/badge/Discord-Join%20our%20server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/B8KZKNsPpj) [![Subscribe on YouTube](https://img.shields.io/badge/YouTube-Subscribe-red?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@AgentZeroFW) [![Connect on LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jan-tomasek/) [![Follow on Warpcast](https://img.shields.io/badge/Warpcast-Follow-5A32F3?style=for-the-badge)](https://warpcast.com/agent-zero)
 
-
 ## Documentation:
 
 [Introduction](#a-personal-organic-agentic-framework-that-grows-and-learns-with-you) •
@@ -23,7 +22,6 @@ Or see DeepWiki generated documentation:
 
 </div>
 
-
 <div align="center">
 
 > ### 🚨 **AGENT ZERO SKILLS** 🚨
@@ -34,20 +32,66 @@ Or see DeepWiki generated documentation:
 > See [Usage Guide](./docs/guides/usage.md) and [Projects Tutorial](./docs/guides/projects.md) to get started.
 </div>
 
-
-
 [![Showcase](/docs/res/showcase-thumb.png)](https://youtu.be/lazLNcEYsiQ)
 
-
 ## A personal, organic agentic framework that grows and learns with you
-
-
 
 - Agent Zero is not a predefined agentic framework. It is designed to be dynamic, organically growing, and learning as you use it.
 - Agent Zero is fully transparent, readable, comprehensible, customizable, and interactive.
 - Agent Zero uses the computer as a tool to accomplish its (your) tasks.
 
-# ⚙️ Installation
+---
+
+# 🎯 OneBot OS Fork - n8n + Foam PKM Integration
+
+**This fork adds:**
+- **n8n**: Visual workflow automation (400+ integrations)
+- **Foam PKM**: Zettelkasten + PARA knowledge management
+- **Agent Tools**: n8n_tool.py and foam_zettel.py for agent automation
+- **Docker Stack**: Complete orchestration with health checks
+
+### Quick Start (OneBot OS)
+
+```bash
+# Clone this fork
+git clone https://github.com/ValoLoco/agent-zero.git
+cd agent-zero
+
+# Configure
+cp .env.example .env
+
+# Start full stack
+docker compose up -d
+
+# Install Ollama models
+docker exec ollama ollama pull gemma2:9b
+docker exec ollama ollama pull nomic-embed-text
+
+# Access services
+open http://localhost:8000  # Agent Zero
+open http://localhost:5678  # n8n
+code docker-volumes/foam-repo  # Foam PKM
+```
+
+### Architecture
+
+```
+Agent Zero (8000)
+├── Ollama (11434) - Local LLM
+├── n8n (5678) - Workflow automation
+│   └── Postgres (5432)
+└── Foam Vault - Zettelkasten + PARA
+```
+
+### Documentation
+
+- [DEPLOYMENT.md](DEPLOYMENT.md) - Production deployment (Railway, Vercel, VPS)
+- [ZETTELKASTEN.md](ZETTELKASTEN.md) - Foam PKM workflow guide
+- [.env.example](.env.example) - Environment configuration
+
+---
+
+# ⚙️ Installation (Original Agent Zero)
 
 Click to open a video to learn how to install Agent Zero:
 
@@ -55,17 +99,15 @@ Click to open a video to learn how to install Agent Zero:
 
 A detailed setup guide for Windows, macOS, and Linux with a video can be found in the Agent Zero Documentation at [this page](./docs/setup/installation.md).
 
-### ⚡ Quick Start
+### ⚡ Quick Start (Upstream)
 
 ```bash
 # Pull and run with Docker
-
 docker pull agent0ai/agent-zero
 docker run -p 50001:80 agent0ai/agent-zero
 
 # Visit http://localhost:50001 to start
 ```
-
 
 # 💡 Key Features
 
@@ -148,7 +190,6 @@ docker run -p 50001:80 agent0ai/agent-zero
 
 - The whole framework is guided by the **prompts/** folder. Agent guidelines, tool instructions, messages, utility AI functions, it's all there.
 
-
 ## 📚 Read the Documentation
 
 | Page | Description |
@@ -163,7 +204,6 @@ docker run -p 50001:80 agent0ai/agent-zero
 | [Architecture](./docs/developer/architecture.md) | System design and components |
 | [Contributing](./docs/guides/contribution.md) | How to contribute |
 | [Troubleshooting](./docs/guides/troubleshooting.md) | Common issues and their solutions |
-
 
 ## 🎯 Changelog
 
@@ -203,7 +243,6 @@ docker run -p 50001:80 agent0ai/agent-zero
 - Workdir outside project support for more flexible file organization
 - Agent number tracking in backend and responses for multi-agent identification
 - Many bug fixes and stability improvements across the UI, MCP tools, scheduler, uploads, and WebSocket handling
-
 
 ### v0.9.7 - Projects
 [Release video](https://youtu.be/RrTDp_v9V1c)

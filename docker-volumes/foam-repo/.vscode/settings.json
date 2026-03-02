@@ -1,0 +1,17 @@
+{
+  "foam.openDailyNote.directory": "journals",
+  "foam.openDailyNote.filenameFormat": "yyyy-MM-dd",
+  "foam.openDailyNote.onStartup": false,
+  "foam.openDailyNote.titleFormat": "fullDate",
+  "foam.edit.linkReferenceDefinitions": "off",
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  },
+  "editor.wordWrap": "on",
+  "markdown.preview.breaks": true,
+  "[markdown]": {
+    "editor.defaultFormatter": "foam.foam-vscode"
+  }
+}

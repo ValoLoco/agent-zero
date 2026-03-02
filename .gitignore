@@ -1,42 +1,39 @@
-# Ignore common unwanted files globally
-**/.DS_Store
-**/.env
-**/__pycache__/
-*.py[cod]
-**/.conda/
+# Agent Zero
+docker-volumes/agent-memory/*
+!docker-volumes/agent-memory/.gitkeep
 
-#Ignore IDE files
-.cursor/
-.windsurf/
+# Foam (track structure, not content initially)
+docker-volumes/foam-repo/.git
+docker-volumes/foam-repo/journals/*
+!docker-volumes/foam-repo/journals/.gitkeep
 
-# ignore test files in root dir
-/*.test.py
+# Environment
+.env
+.env.local
 
-# Ignore all contents of the virtual environment directory
-.venv/
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
 
-# obsolete folders
-memory/
-knowledge/custom/
-instruments/
+# Docker
+.docker/
 
-# Handle logs directory
-logs/**
-!logs/**/
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# Handle tmp and usr directory
-tmp/**
-!tmp/**/
-usr/**
-!usr/**/
-
-# Handle knowledge directory
-
-# Global rule to include .gitkeep files anywhere
-!**/.gitkeep
-
-# for browser-use
-agent_history.gif
-
-.agent/**
-.claude/**
+# OS
+.DS_Store
+Thumbs.db
