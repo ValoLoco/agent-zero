@@ -4,7 +4,8 @@ FROM agent0ai/agent-zero-base:latest
 ARG BRANCH=main
 ENV BRANCH=$BRANCH
 
-# Install Ollama
+# Install zstd (required by Ollama installer) and Ollama
+RUN apt-get update && apt-get install -y zstd && rm -rf /var/lib/apt/lists/*
 RUN curl -fsSL https://ollama.com/install.sh | sh
 
 # Install PostgreSQL
