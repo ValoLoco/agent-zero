@@ -49,6 +49,8 @@ Or see DeepWiki generated documentation:
 - **Foam PKM**: Zettelkasten + PARA knowledge management
 - **Agent Tools**: n8n_tool.py and foam_zettel.py for agent automation
 - **Docker Stack**: Complete orchestration with health checks
+- **Unified Container**: Single container architecture with supervisord
+- **Qwen3 Models**: Lightweight, high-performance Alibaba models
 
 ### Quick Start (OneBot OS)
 
@@ -59,33 +61,57 @@ cd agent-zero
 
 # Configure
 cp .env.example .env
+# Edit .env and add your API keys
 
-# Start full stack
-docker compose up -d
+# Build and start unified container
+docker-compose build
+docker-compose up -d
 
-# Install Ollama models
-docker exec ollama ollama pull gemma2:9b
-docker exec ollama ollama pull nomic-embed-text
+# Install Qwen3 models (inside Docker container)
+# Note: Models must be pulled inside container even if you have them locally
+docker exec agent-zero-unified ollama pull qwen3:4b
+docker exec agent-zero-unified ollama pull qwen3-coder:30b
+docker exec agent-zero-unified ollama pull nomic-embed-text
 
 # Access services
-open http://localhost:8000  # Agent Zero
-open http://localhost:5678  # n8n
+open http://localhost:50080  # Agent Zero
+open http://localhost:5678   # n8n (internal)
 code docker-volumes/foam-repo  # Foam PKM
 ```
+
+### Why Qwen3?
+
+**Qwen3:4B** (General LLM)
+- 4B parameters, rivals Qwen2.5-72B performance
+- Faster than Gemma2:9b with better reasoning
+- 128K context window
+- Apache 2.0 license (commercial use)
+
+**Qwen3-Coder:30B** (Coding Tasks)
+- 30B total, only 3.3B activated (MoE efficiency)
+- Best code generation in its class
+- 256K context window
+- Agentic coding workflows
+
+**Why models need pulling inside Docker:**
+Docker containers have isolated filesystems. Even if you have Ollama models on your host system, the Ollama instance running inside the container cannot access them. Models must be pulled inside the container.
 
 ### Architecture
 
 ```
-Agent Zero (8000)
-├── Ollama (11434) - Local LLM
+Agent Zero (50080)
+├── Ollama (11434) - Qwen3 models
 ├── n8n (5678) - Workflow automation
 │   └── Postgres (5432)
+├── SearXNG (internal) - Search engine
 └── Foam Vault - Zettelkasten + PARA
 ```
 
 ### Documentation
 
-- [DEPLOYMENT.md](DEPLOYMENT.md) - Production deployment (Railway, Vercel, VPS)
+- [DEPLOYMENT-UNIFIED.md](DEPLOYMENT-UNIFIED.md) - Production deployment guide
+- [README-MIGRATION.md](README-MIGRATION.md) - Migration from microservices
+- [docs/PERPLEXITY-SEARCH.md](docs/PERPLEXITY-SEARCH.md) - Search engine configuration
 - [ZETTELKASTEN.md](ZETTELKASTEN.md) - Foam PKM workflow guide
 - [.env.example](.env.example) - Environment configuration
 
